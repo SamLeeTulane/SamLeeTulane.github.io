@@ -115,7 +115,7 @@ img {
 
 
 #author {
-  position: absolute;
+  position: relative;
   margin: auto;
   left: 5px;
   bottom: 5px;
