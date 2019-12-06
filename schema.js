@@ -51,7 +51,7 @@ function inGrid(array, cell){
 
 function duplicate(array, color){
   for(var i = 0; i < array.length; i++){
-      if(array[i] == color)
+      if(array[i] == color){
          return true;
       }
   }
@@ -89,7 +89,7 @@ function fillShades(){
       if(!exit){
         var c = hexToRgba(scrambled[i][j].color);
         var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if((score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
+        if(!duplicate(light, scrambled[i][j]) && (score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
           if(light.length >= 5){
             exit = true;
           } else {
@@ -109,7 +109,7 @@ function fillShades(){
       if(!exit){
         var c = hexToRgba(scrambled[i][j].color);
         var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if((score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
+        if(!duplicate(dark, scrambled[i][j]) && (score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
           if(dark.length >= 5){
             exit = true;
           } else {
