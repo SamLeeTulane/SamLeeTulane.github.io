@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Deans' Honor Scholarship Project</title>
+  </head>
+  <link rel="stylesheet" href="master.css">
+  <body>
+    <div id="content">
+      <div id="image-container">
+        <img src="tulane.jpg" id="cover" alt="Tulane University College of Science and Engineering">
+        <div id="user-upload-container">
+          <span>Upload your own image:&emsp;</span><input id="user-upload" type="file" accept="image/*" />
+        </div>
+      </div>
+      <div id="grid">
+        <canvas id="board"></canvas>
+        <div id="custom" style="display: none;">
+        </div>
+      </div>
+      <div id="cs">
+        <div id="dark">
+        </div>
+        <div id="light">
+        </div>
+      </div>
+      <div id="loading">
+        Analyzing
+      </div>
+    </div>
+    <span id="author">Created by Sam Lee</span>
+    <script src="load.js" charset="utf-8"></script>
+    <script src="schema.js" charset="utf-8"></script>
+    <script src="upload.js" charset="utf-8"></script>
+    <input id="helper" type="text" />
+    <script>
+      function getColors(){
+          var shades = [];
+          var children = document.getElementById("custom").children;
+          for (var i = 0; i < children.length; i++) {
+            if(children[i].innerText.length == 7){//has to be a hex color
+              shades.push(hexToRgba(children[i].innerText));
+              }
+          }
+          var code = '[';
+          for(var i = 0; i < shades.length; i++){
+            var color = shades[i];
+            var string = ('"rgba(' + color.r + ', ' + color.g + ', ' + color.b + ', ' + color.a + (i == shades.length-1 ? ')"],' : ')", '));
+            code += string;
+          }
+
+          var copier = document.getElementById("helper");
+          copier.value = code;
+          copier.select();
+          document.execCommand("copy");
+      }
+      window.addEventListener("keydown", function(evt){
+        if(evt.keyCode == 67){
+          getColors();
+        }
+      })
+    </script>
+  </body>
+</html>
