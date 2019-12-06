@@ -89,7 +89,7 @@ function fillShades(){
       if(!exit){
         var c = hexToRgba(scrambled[i][j].color);
         var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if(!duplicate(light, scrambled[i][j].color) && (score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
+        if((score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
           if(light.length >= 5){
             exit = true;
           } else {
@@ -109,7 +109,7 @@ function fillShades(){
       if(!exit){
         var c = hexToRgba(scrambled[i][j].color);
         var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if(!duplicate(light, scrambled[i][j].color) && (score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
+        if((score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
           if(dark.length >= 5){
             exit = true;
           } else {
