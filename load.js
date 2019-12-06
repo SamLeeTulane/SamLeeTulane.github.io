@@ -23,10 +23,10 @@ function load(){
     time++;
 
     var dots = "";
-    for(var i = 0; i < time; i++){
+    for(var i = 0; i < time%5; i++){
       dots += ".";
     }
-    loading.innerText = "Analyzing" + dots.substring(dots.length%5);
+    loading.innerText = "Analyzing" + dots;
 
     if(grid.length**2 < (WIDTH*HEIGHT)/cellSize**2){
       console.log("Loading...");
