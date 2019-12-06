@@ -290,5 +290,5 @@ function draw(){
 }
 
 window.onload = function(){
-  main();
+  window.setTimeout(main, 30);
 }
