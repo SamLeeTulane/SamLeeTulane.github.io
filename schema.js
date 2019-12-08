@@ -83,43 +83,40 @@ function fillShades(){
   }
 
   var lightAnchor = sorted[Math.min(Math.round((0.85+((0.5-Math.random())/2.5))*sorted.length),sorted.length-1)];
-  var exit = false;
-  for(var i = 0; i < scrambled.length; i++){
-    for(var j = 0; j < scrambled[i].length; j++){
-      if(!exit){
-        var c = hexToRgba(scrambled[i][j].color);
-        var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if(!duplicate(light, scrambled[i][j].color) && (score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
-          if(light.length >= 5){
-            exit = true;
-          } else {
-            light.push(scrambled[i][j].color);
-          }
-        }
+  var exit = false, counter = 0;
+  while(!exit || counter < cellSize**2-light.length){
+    var i = Math.round(Math.random()*(scrambled.length-1));
+    var j = Math.round(Math.random()*(WIDTH/cellSize-1));
+
+    var c = hexToRgba(scrambled[i][j].color);
+    var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
+    if(!duplicate(light, scrambled[i][j].color) && (score <= lightAnchor+stdv && score >= lightAnchor-stdv)){
+      if(light.length >= 5){
+        exit = true;
       } else {
-        break;
+        light.push(scrambled[i][j].color);
       }
     }
+    counter++;
   }
 
+
   var darkAnchor = sorted[Math.max(Math.round((0.15+((0.5-Math.random())/2.5))*sorted.length), 0)];
-  var exit = false;
-  for(var i = 0; i < scrambled.length; i++){
-    for(var j = 0; j < scrambled[i].length; j++){
-      if(!exit){
-        var c = hexToRgba(scrambled[i][j].color);
-        var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
-        if(!duplicate(dark, scrambled[i][j].color) && (score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
-          if(dark.length >= 5){
-            exit = true;
-          } else {
-            dark.push(scrambled[i][j].color);
-          }
-        }
+  exit = false, counter = 0;
+  while(!exit || counter < cellSize**2-light.length){
+    var i = Math.round(Math.random()*(scrambled.length-1));
+    var j = Math.round(Math.random()*(WIDTH/cellSize-1));
+
+    var c = hexToRgba(scrambled[i][j].color);
+    var score = Math.round(Math.sqrt((c.r**2+c.g**2+c.b**2)));
+    if(!duplicate(dark, scrambled[i][j].color) && (score <= darkAnchor+stdv && score >= darkAnchor-stdv)){
+      if(dark.length >= 5){
+        exit = true;
       } else {
-        break;
+        dark.push(scrambled[i][j].color);
       }
     }
+    counter++;
   }
 
   addShadesToDom();
