@@ -26,7 +26,7 @@ function load(){
     for(var i = 0; i < time%5; i++){
       dots += ".";
     }
-    loading.innerText = "Analyzing" + dots;
+    loading.innerHTML = "Analyzing" + dots + "<br><div class='subtitle'>(Google Chrome is needed to run this)</div>";
 
     if(grid.length**2 < (WIDTH*HEIGHT)/cellSize**2){
       console.log("Loading...");
