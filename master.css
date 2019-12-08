@@ -61,6 +61,11 @@ img {
   color: rgb(142, 142, 142);
 }
 
+.subtitle {
+  font-weight: lighter;
+  font-size: 12pt;
+}
+
 #image-container {
   margin-top: 25px;
 }
